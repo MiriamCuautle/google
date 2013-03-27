@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Geolocalización</title>
+ <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script src="phonegap.js"></script>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?sensor=true">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+		  document.addEventListener("devideready",function() {
+			  navigator.geolocation.getCurrentPosition(function(loc){
+				  var myLatlng = new google.maps.LatLng(loc.coords.latitude,loc.coords.longitude);
+				  var mapOptions = {
+					zoom: 16,
+					center: myLatlng,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				  }
+				  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+				
+				  var marker = new google.maps.Marker({
+					  position: myLatlng,
+					  map: map,
+					  title:"Hello World!"
+				  });   
+			  }, function(err){
+				  navigator.notification.alert(err.code, null,'Error', 'Ya que!' )});
+		  }, false);
+	}
+    </script>
+</head>
+
+<body onload="initialize();">
+	<div id="map_canvas" style="width:100%; height:100%"></div>
+</body>
+</html>
