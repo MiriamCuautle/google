@@ -14,7 +14,7 @@
     </script>
     <script type="text/javascript">
       function initialize() {
-		  document.addEventListener("devideready",function() {
+		  document.addEventListener("deviceready",function() {
 			  navigator.geolocation.getCurrentPosition(function(loc){
 				  var myLatlng = new google.maps.LatLng(loc.coords.latitude,loc.coords.longitude);
 				  var mapOptions = {
@@ -30,7 +30,8 @@
 					  title:"Hello World!"
 				  });   
 			  }, function(err){
-				  navigator.notification.alert(err.code, null,'Error', 'Ya que!' )});
+				  navigator.notification.alert(err.code, null,'Error', 'Ya que!' )
+				  });
 		  }, false);
 	}
     </script>
